@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Portfolio premium d'Ange Alida N’GUESSAN, Data Analyst en Côte d’Ivoire. SQL, Python, Power BI, dashboards et analyse business.">
+  <title>Ange Alida N’GUESSAN | Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f6f3ea;
+      --muted: #aab3c5;
+      --soft: #d9d3bf;
+      --bg: #070a12;
+      --panel: #101624;
+      --panel-2: #151d2e;
+      --line: rgba(255, 255, 255, .1);
+      --gold: #d7b46a;
+      --gold-2: #f0d99b;
+      --blue: #49a7ff;
+      --cyan: #58e0d5;
+      --green: #6ce09f;
+      --danger: #ff7b7b;
+      --shadow: 0 26px 70px rgba(0, 0, 0, .36);
+      --radius: 8px;
+      --nav: 74px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        linear-gradient(115deg, rgba(73, 167, 255, .13), transparent 32%),
+        linear-gradient(245deg, rgba(215, 180, 106, .1), transparent 34%),
+        linear-gradient(145deg, #05070d 0%, var(--bg) 42%, #0b101b 100%);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(7, 10, 18, .84), transparent 26%, transparent 74%, rgba(7, 10, 18, .8));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      height: var(--nav);
+      border-bottom: 1px solid transparent;
+      background: rgba(7, 10, 18, .68);
+      backdrop-filter: blur(18px);
+      transition: border-color .25s ease, background .25s ease;
+    }
+
+    .nav.is-scrolled {
+      border-color: var(--line);
+      background: rgba(7, 10, 18, .9);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(215, 180, 106, .45);
+      background: linear-gradient(145deg, rgba(215, 180, 106, .22), rgba(73, 167, 255, .1));
+      color: var(--gold-2);
+      border-radius: 8px;
+      box-shadow: 0 14px 34px rgba(215, 180, 106, .13);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 600;
+      transition: color .2s ease, background .2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.is-active {
+      color: var(--ink);
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .05);
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+      border-radius: 99px;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .menu-btn.is-open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-btn.is-open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      letter-spacing: .01em;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #08101e;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      box-shadow: 0 18px 42px rgba(215, 180, 106, .22);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(73, 167, 255, .45);
+      background: rgba(73, 167, 255, .1);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold-2);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: calc(var(--nav) + 58px) 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(330px, .78fr);
+      gap: 54px;
+      align-items: center;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(108, 224, 159, .24);
+      border-radius: 8px;
+      color: #c8ffdc;
+      background: rgba(108, 224, 159, .08);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .availability::before {
+      content: "";
+      width: 9px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 7px rgba(108, 224, 159, .12);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      font-size: clamp(3.3rem, 7.4vw, 7.7rem);
+      line-height: .88;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-family: "Playfair Display", serif;
+      color: var(--gold-2);
+      font-weight: 700;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin: 28px 0 34px;
+      color: var(--soft);
+      font-size: clamp(1.05rem, 1.8vw, 1.26rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .hero-meta span {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .portrait-panel {
+      position: relative;
+      min-height: 610px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .025));
+      box-shadow: var(--shadow);
+    }
+
+    .portrait {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 48%, rgba(7, 10, 18, .94)),
+        url("Ange.png") center 26% / cover no-repeat;
+      transform: scale(1.01);
+    }
+
+    .portrait-card {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(7, 10, 18, .76);
+      backdrop-filter: blur(18px);
+    }
+
+    .portrait-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 7px;
+    }
+
+    .portrait-card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: -34px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi {
+      padding: 24px;
+      background: rgba(16, 22, 36, .92);
+    }
+
+    .kpi strong {
+      display: block;
+      color: var(--gold-2);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1;
+    }
+
+    .kpi span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav) + 22px);
+      padding: 102px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      max-width: 760px;
+    }
+
+    h2 {
+      margin-top: 12px;
+      font-size: clamp(2.1rem, 4vw, 4.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      max-width: 480px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .about-card,
+    .principle,
+    .skill-card,
+    .project-card,
+    .dashboard-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .028));
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .18);
+    }
+
+    .about-card {
+      padding: 30px;
+    }
+
+    .about-card p {
+      color: var(--soft);
+      font-size: 1.08rem;
+    }
+
+    .about-card p+p {
+      margin-top: 18px;
+    }
+
+    .principles {
+      display: grid;
+      gap: 14px;
+    }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(215, 180, 106, .28);
+      border-radius: 8px;
+      color: var(--gold-2);
+      background: rgba(215, 180, 106, .08);
+    }
+
+    .icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .principle h3,
+    .skill-card h3,
+    .project-card h3,
+    .dashboard-card h3,
+    .contact-card h3 {
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .principle p,
+    .skill-card p,
+    .project-card p,
+    .dashboard-card p,
+    .contact-card p {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      position: relative;
+      min-height: 210px;
+      padding: 22px;
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .skill-card::after {
+      content: attr(data-code);
+      position: absolute;
+      right: 16px;
+      bottom: -4px;
+      color: rgba(255, 255, 255, .045);
+      font-size: 4.4rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .dashboard-card:hover,
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(215, 180, 106, .38);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .035));
+    }
+
+    .skill-card .icon {
+      margin-bottom: 18px;
+    }
+
+    .skill-list,
+    .reason-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .skill-list li,
+    .reason-list li {
+      padding-left: 3px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 26px;
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .project-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: .84fr 1.16fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .project-visual {
+      min-height: 330px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(73, 167, 255, .16), transparent 40%),
+        linear-gradient(180deg, #111827, #090d16);
+    }
+
+    .chart-scene {
+      height: 100%;
+      min-height: inherit;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 24px;
+      gap: 20px;
+    }
+
+    .bars {
+      display: flex;
+      align-items: end;
+      gap: 14px;
+      height: 220px;
+    }
+
+    .bar {
+      flex: 1;
+      min-width: 18px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, var(--gold-2), rgba(73, 167, 255, .65));
+      box-shadow: 0 12px 28px rgba(73, 167, 255, .16);
+      transform-origin: bottom;
+      animation: growBar 1.2s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .mini-stat {
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .mini-stat strong {
+      display: block;
+      color: var(--gold-2);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .project-number {
+      color: rgba(215, 180, 106, .68);
+      font-family: "Playfair Display", serif;
+      font-size: 2.8rem;
+      line-height: .82;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .tag-list span {
+      padding: 6px 9px;
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 8px;
+      color: var(--soft);
+      background: rgba(255, 255, 255, .045);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .project-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .project-block {
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .project-block h4 {
+      margin-bottom: 10px;
+      color: var(--gold-2);
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .project-block ul {
+      display: grid;
+      gap: 8px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .dashboard-band {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(215, 180, 106, .1), rgba(73, 167, 255, .08));
+      box-shadow: var(--shadow);
+    }
+
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 1px;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .dashboard-copy,
+    .dashboard-preview {
+      background: rgba(10, 15, 26, .84);
+      padding: 30px;
+    }
+
+    .dashboard-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .dashboard-card {
+      padding: 18px;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .bi-screen {
+      display: grid;
+      grid-template-columns: .64fr 1fr;
+      gap: 14px;
+      height: 100%;
+      min-height: 420px;
+    }
+
+    .bi-sidebar,
+    .bi-main {
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .045);
+      padding: 16px;
+    }
+
+    .bi-pill {
+      height: 34px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(215, 180, 106, .5), rgba(73, 167, 255, .25));
+    }
+
+    .bi-main {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+    }
+
+    .bi-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .bi-kpis div,
+    .bi-foot div {
+      min-height: 74px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .065);
+    }
+
+    .bi-chart {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .bi-chart span {
+      flex: 1;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, var(--cyan), var(--blue));
+    }
+
+    .bi-foot {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      padding: 28px;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .04);
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    .contact-links a:hover {
+      border-color: rgba(215, 180, 106, .34);
+      background: rgba(215, 180, 106, .07);
+    }
+
+    .contact-links span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .contact-links strong {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: var(--soft);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 8px;
+      padding: 13px 14px;
+      color: var(--ink);
+      outline: none;
+      background: rgba(255, 255, 255, .045);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .field textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(73, 167, 255, .5);
+      box-shadow: 0 0 0 4px rgba(73, 167, 255, .1);
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: .92rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes growBar {
+      from {
+        transform: scaleY(.08);
+        opacity: .25;
+      }
+
+      to {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1040px) {
+
+      .hero-grid,
+      .about-grid,
+      .dashboard-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-panel {
+        min-height: 560px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-card.featured {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: var(--nav);
+        left: 14px;
+        right: 14px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(7, 10, 18, .96);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-link {
+        justify-content: center;
+      }
+
+      .brand span:last-child {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: calc(var(--nav) + 42px);
+      }
+
+      .hero-grid {
+        gap: 34px;
+      }
+
+      .portrait-panel {
+        min-height: 450px;
+      }
+
+      .kpi-strip,
+      .project-grid,
+      .project-columns,
+      .dashboard-list,
+      .bi-screen {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card.featured {
+        grid-column: span 1;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-lead {
+        margin-top: 16px;
+      }
+
+      section {
+        padding: 76px 0;
+      }
+
+      .footer-inner {
+        display: grid;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#accueil" aria-label="Retour a l'accueil">
+        <span class="brand-mark">AA</span>
+        <span>Ange Alida N’GUESSAN</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a class="nav-link is-active" href="#accueil">Accueil</a></li>
+        <li><a class="nav-link" href="#apropos">À propos</a></li>
+        <li><a class="nav-link" href="#competences">Compétences</a></li>
+        <li><a class="nav-link" href="#projets">Projets</a></li>
+        <li><a class="nav-link" href="#powerbi">Power BI</a></li>
+        <li><a class="nav-link" href="#pourquoi">Pourquoi moi</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero" id="accueil">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="availability reveal">Disponible pour missions, emploi et freelance</div>
+            <p class="eyebrow reveal">Data Analyst</p>
+            <h2 class="reveal">Augmentez vos performances <span> grâce à vos données</span></h2>
+            <p class="hero-copy reveal">
+              Data Analyst spécialisée en SQL, Python, Power BI et Excel, j’aide les entreprises à exploiter leurs
+              données
+              pour améliorer leur performance, optimiser leurs décisions et accélérer leur croissance.
+            </p>
+            <div class="hero-actions reveal">
+              <a class="btn btn-primary" href="#projets">Voir mes projets</a>
+              <a class="btn btn-secondary" href="#contact">Travaillons ensemble</a>
+            </div>
+            <div class="hero-meta reveal">
+              <span>SQL avancé</span>
+              <span>Python analytics</span>
+              <span>Power BI & DAX</span>
+              <span>Excel avancé</span>
+            </div>
+          </div>
+
+          <aside class="portrait-panel reveal" aria-label="Portrait professionnel">
+            <div class="portrait"></div>
+            <div class="portrait-card">
+              <strong>Ange Alida N’GUESSAN</strong>
+              <p>Analyse, reporting et visualisation pour aider les équipes à lire leurs performances et agir plus vite.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════ À PROPOS ═══════════════════════════ -->
+    <section id="apropos">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title reveal">
+            <p class="eyebrow">À propos</p>
+            <h2>Des données complexes transformées en insights exploitables.</h2>
+          </div>
+          <p class="section-lead reveal">
+            Mon objectif : aider les entreprises à prendre de meilleures décisions basées sur la donnée.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card reveal">
+            <p>
+              Data Analyst orientée résultats, je transforme des données complexes en insights clairs
+              et exploitables pour le business.
+            </p>
+            <p>
+              Grâce à une solide maîtrise de SQL, Python, Power BI et Excel avancé
+              (Power Query, Power Pivot), je suis capable de couvrir toute la chaîne de valeur
+              de la donnée : de la préparation à la visualisation, jusqu'à la recommandation stratégique.
+            </p>
+          </article>
+
+          <div class="principles">
+            <article class="principle reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 19V5" />
+                  <path d="M4 19h16" />
+                  <path d="m8 15 3-4 3 2 4-7" />
+                </svg>
+              </div>
+              <div>
+                <h3>Mesure de performance</h3>
+                <p>Suivi du chiffre d'affaires, marge, panier moyen, churn, cohortes, NRR et ROI.</p>
+              </div>
+            </article>
+            <article class="principle reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v18" />
+                  <path d="M5 8h14" />
+                  <path d="M7 16h10" />
+                </svg>
+              </div>
+              <div>
+                <h3>Analyse opérationnelle</h3>
+                <p>Segmentation client, analyse produit, détection d'anomalies et priorisation des leviers.</p>
+              </div>
+            </article>
+            <article class="principle reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M7 14h3" />
+                  <path d="M14 10h3" />
+                  <path d="M7 10h3" />
+                  <path d="M14 14h3" />
+                </svg>
+              </div>
+              <div>
+                <h3>Dashboards exécutifs</h3>
+                <p>Tableaux de bord Power BI interactifs, filtres propres et storytelling visuel pour l'aide à la
+                  décision.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ COMPÉTENCES ═══════════════════════════ -->
+    <section id="competences">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title reveal">
+            <p class="eyebrow">Compétences</p>
+            <h2>Stack analytique complète pour passer du brut au stratégique.</h2>
+          </div>
+          <p class="section-lead reveal">Des compétences techniques et métier présentées comme des leviers d'impact.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal" data-code="DATA">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <ellipse cx="12" cy="5" rx="7" ry="3" />
+                <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5" />
+                <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
+              </svg>
+            </div>
+            <h3>Data & Analyse</h3>
+            <ul class="skill-list">
+              <li>SQL avancé : CTE, Window Functions, modélisation de données</li>
+              <li>Python : Pandas, NumPy, Matplotlib, Seaborn, Plotly</li>
+              <li>Analyse exploratoire : EDA</li>
+              <li>Data Cleaning & Feature Engineering</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" data-code="BI">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 20V10" />
+                <path d="M12 20V4" />
+                <path d="M19 20v-7" />
+              </svg>
+            </div>
+            <h3>Business Intelligence</h3>
+            <ul class="skill-list">
+              <li>Power BI : DAX, dashboards interactifs, data modeling</li>
+              <li>Excel avancé : Power Query, Power Pivot</li>
+              <li>Automatisation et reporting</li>
+              <li>Visualisations dynamiques pour décideurs</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" data-code="BUS">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 18 9 8l4 6 3-4 4 8" />
+              </svg>
+            </div>
+            <h3>Analyse Business</h3>
+            <ul class="skill-list">
+              <li>Construction de KPI</li>
+              <li>Analyse de performance</li>
+              <li>Segmentation client : RFM, cohortes</li>
+              <li>Data storytelling</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ PROJETS ═══════════════════════════ -->
+    <section id="projets">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title reveal">
+            <p class="eyebrow">Projets principaux</p>
+            <h2>Des analyses concrètes, construites autour d'insights business.</h2>
+          </div>
+          <p class="section-lead reveal">Chaque projet montre le contexte, les objectifs, les travaux réalisés, les
+            enseignements et l'impact business.</p>
+        </div>
+
+        <div class="project-grid">
+
+          <!-- Projet 01 — SaaS (ancien 02) -->
+          <article class="project-card featured reveal">
+            <div class="project-visual" aria-hidden="true">
+              <div class="chart-scene">
+                <div class="bars">
+                  <span class="bar" style="height: 62%; animation-delay: .05s"></span>
+                  <span class="bar" style="height: 78%; animation-delay: .12s"></span>
+                  <span class="bar" style="height: 45%; animation-delay: .18s"></span>
+                  <span class="bar" style="height: 91%; animation-delay: .24s"></span>
+                  <span class="bar" style="height: 55%; animation-delay: .3s"></span>
+                  <span class="bar" style="height: 83%; animation-delay: .36s"></span>
+                </div>
+                <div class="chart-row">
+                  <div class="mini-stat"><strong>MRR</strong><span>Revenu mensuel récurrent</span></div>
+                  <div class="mini-stat"><strong>NRR</strong><span>Taux de rétention net</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="project-top">
+                <div>
+                  <p class="eyebrow">SQL</p>
+                  <h3>Analyse SaaS — Revenus & Churn</h3>
+                </div>
+                <span class="project-number">01</span>
+              </div>
+              <p><strong>Contexte :</strong> analyse d'une entreprise SaaS B2B en Afrique de l'Ouest.</p>
+              <div class="tag-list">
+                <span>SQL</span><span>MRR</span><span>Churn</span><span>NRR</span>
+              </div>
+              <div class="project-columns">
+                <div class="project-block">
+                  <h4>Objectifs</h4>
+                  <ul>
+                    <li>Suivre le MRR</li>
+                    <li>Analyser le churn</li>
+                    <li>Étudier la rétention client</li>
+                    <li>Identifier les segments rentables</li>
+                  </ul>
+                </div>
+                <div class="project-block">
+                  <h4>Travaux réalisés</h4>
+                  <ul>
+                    <li>Analyse du MRR par pays et par mois</li>
+                    <li>Calcul du churn et du NRR</li>
+                    <li>Analyse de cohortes</li>
+                    <li>Segmentation client</li>
+                  </ul>
+                </div>
+                <div class="project-block">
+                  <h4>Insights clés</h4>
+                  <ul>
+                    <li>La croissance du MRR est portée par les upgrades Premium</li>
+                    <li>Le churn est élevé après 3 mois pour les clients Basic</li>
+                    <li>Les cohortes initiales sont les plus performantes</li>
+                    <li>Certains segments dépassent 100% de NRR</li>
+                  </ul>
+                </div>
+                <div class="project-block">
+                  <h4>Impact business</h4>
+                  <ul>
+                    <li>Réduction du churn</li>
+                    <li>Identification d'opportunités d'upsell</li>
+                    <li>Optimisation des revenus</li>
+                    <li>Outils : SQL</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Boutons -->
+              <div class="hero-actions" style="margin-top:24px;">
+
+                <a class="btn btn-primary"
+                  href="https://github.com/angenguessan08-cpu/projet03_SQL_Analyse-SaaS_Revenus-Churn.git"
+                  target="_blank">
+                  Voir le projet sur GitHub
+                </a>
+              </div>
+          </article>
+
+          <!-- Projet 02 — AfriMarket (ancien 04) -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <div>
+                <p class="eyebrow">Python</p>
+                <h3>Analyse stratégique — AfriMarket</h3>
+              </div>
+              <span class="project-number">02</span>
+            </div>
+            <p><strong>Contexte :</strong> analyse globale d'une plateforme e-commerce pour améliorer la rentabilité et
+              la
+              performance.</p>
+            <div class="tag-list">
+              <span>Python</span><span>KPI</span><span>ROI marketing</span><span>Pareto</span>
+            </div>
+            <div class="project-columns">
+              <div class="project-block">
+                <h4>Travaux réalisés</h4>
+                <ul>
+                  <li>Calcul des KPI : CA, profit, panier moyen</li>
+                  <li>Analyse par catégorie et par ville</li>
+                  <li>Analyse du ROI marketing</li>
+                  <li>Analyse client avec Pareto</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Insights clés</h4>
+                <ul>
+                  <li>20% des clients génèrent 80% du chiffre d'affaires</li>
+                  <li>Certaines catégories ont un taux de retour élevé</li>
+                  <li>Forte concentration géographique des ventes</li>
+                  <li>ROI marketing très variable</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Impact business</h4>
+                <ul>
+                  <li>Optimisation des investissements marketing</li>
+                  <li>Amélioration de la rentabilité</li>
+                  <li>Mise en place de stratégies de fidélisation</li>
+                  <li>Outils : Python</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Boutons -->
+            <div class="hero-actions" style="margin-top:24px;">
+
+              <a class="btn btn-primary" href="https://github.com/angenguessan08-cpu/PROJET03-Python-Afrimarket.git "
+                target="_blank">
+                Voir le projet sur GitHub
+              </a>
+            </div>
+          </article>
+
+          <!-- Projet 03 — Immobilier Power BI -->
+          <article class="project-card reveal">
+
+            <div class="project-top">
+              <div>
+                <p class="eyebrow">Power BI</p>
+                <h3>Analyse Immobilière — Dashboard Exécutif</h3>
+              </div>
+              <span class="project-number">03</span>
+            </div>
+
+            <p>
+              <strong>Contexte :</strong> analyse des performances d’un portefeuille immobilier
+              afin d’optimiser les revenus locatifs, le taux d’occupation et la rentabilité des actifs.
+            </p>
+
+            <div class="tag-list">
+              <span>Power BI</span>
+              <span>DAX</span>
+              <span>Immobilier</span>
+              <span>KPI</span>
+            </div>
+
+            <div class="project-columns">
+
+              <div class="project-block">
+                <h4>Objectifs</h4>
+                <ul>
+                  <li>Suivre les revenus locatifs</li>
+                  <li>Analyser le taux d’occupation</li>
+                  <li>Identifier les biens les plus rentables</li>
+                  <li>Optimiser la gestion immobilière</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Travaux réalisés</h4>
+                <ul>
+                  <li>Création d’un dashboard Power BI interactif</li>
+                  <li>Modélisation des données immobilières</li>
+                  <li>Création de KPI dynamiques avec DAX</li>
+                  <li>Analyse des performances par zone</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Insights clés</h4>
+                <ul>
+                  <li>Les biens premium génèrent la meilleure marge</li>
+                  <li>Certaines zones présentent un faible taux d’occupation</li>
+                  <li>Les revenus sont fortement concentrés sur quelques actifs</li>
+                  <li>Les coûts de maintenance impactent la rentabilité</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Impact business</h4>
+                <ul>
+                  <li>Amélioration du pilotage immobilier</li>
+                  <li>Optimisation des investissements</li>
+                  <li>Aide à la prise de décision stratégique</li>
+                  <li>Outils : Power BI, DAX</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- Boutons -->
+            <div class="hero-actions" style="margin-top:24px;">
+
+              <a class="btn btn-primary" href="https://github.com/angenguessan08-cpu/power-bi-projet-immobilier.git "
+                target="_blank">
+                Voir le dashbord sur GitHub
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ POWER BI ═══════════════════════════ -->
+    <section id="powerbi">
+      <div class="container">
+        <div class="dashboard-band reveal">
+          <div class="dashboard-layout">
+            <div class="dashboard-copy">
+              <p class="eyebrow">Power BI</p>
+              <h2>Dashboards premium pour piloter les performances.</h2>
+              <p class="section-lead">Des vues interactives, claires et pensées pour réduire le temps entre l'analyse et
+                la
+                décision.</p>
+              <div class="dashboard-list">
+                <article class="dashboard-card">
+                  <h3>Ventes</h3>
+                  <p>CA, panier moyen, produits, régions et tendances.</p>
+                </article>
+                <article class="dashboard-card">
+                  <h3>Énergie</h3>
+                  <p>Consommation, coûts, évolution et alertes.</p>
+                </article>
+                <article class="dashboard-card">
+                  <h3>Stock</h3>
+                  <p>Niveaux, ruptures, rotation et catégories.</p>
+                </article>
+                <article class="dashboard-card">
+                  <h3>RH & Immobilier</h3>
+                  <p>Effectifs, performance, actifs et occupation.</p>
+                </article>
+              </div>
+            </div>
+            <div class="dashboard-preview" aria-label="Aperçu stylisé de dashboard Power BI">
+              <div class="bi-screen">
+                <div class="bi-sidebar">
+                  <div class="bi-pill" style="width: 86%"></div>
+                  <div class="bi-pill" style="width: 64%"></div>
+                  <div class="bi-pill" style="width: 78%"></div>
+                  <div class="bi-pill" style="width: 52%"></div>
+                </div>
+                <div class="bi-main">
+                  <div class="bi-kpis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="bi-chart">
+                    <span style="height: 42%"></span>
+                    <span style="height: 76%"></span>
+                    <span style="height: 58%"></span>
+                    <span style="height: 90%"></span>
+                    <span style="height: 68%"></span>
+                  </div>
+                  <div class="bi-foot">
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ POURQUOI MOI ═══════════════════════════ -->
+    <section id="pourquoi">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title reveal">
+            <p class="eyebrow">Pourquoi travailler avec moi ?</p>
+            <h2>Une approche rigoureuse, orientée résultats et impact business.</h2>
+          </div>
+          <p class="section-lead reveal">
+            Je rends les analyses compréhensibles, actionnables et utiles pour les équipes qui doivent décider vite.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card reveal">
+            <p>
+              Je combine maîtrise technique, sens business et pédagogie pour transformer la donnée
+              en décisions concrètes. L'objectif n'est pas seulement de produire des graphiques,
+              mais d'identifier les leviers qui améliorent la performance.
+            </p>
+          </article>
+
+          <article class="contact-card reveal">
+            <h3>Ce que j'apporte</h3>
+            <ul class="reason-list">
+              <li>Approche orientée résultats et impact business</li>
+              <li>Capacité à transformer la donnée en décisions concrètes</li>
+              <li>Excellente maîtrise des outils data : SQL, Python, Power BI, Excel</li>
+              <li>Rigueur analytique et sens du détail</li>
+              <li>Capacité à vulgariser les données pour les décideurs</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title reveal">
+            <p class="eyebrow">Contact</p>
+            <h2>Travaillons ensemble.</h2>
+          </div>
+          <p class="section-lead reveal">Vous avez un projet data, un besoin d'analyse ou de dashboard ? Je suis
+            disponible pour vous accompagner.</p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card reveal">
+            <h3>Coordonnées</h3>
+            <p>Envoyez un brief, un besoin de dashboard ou une problématique business. Je reviens avec une approche
+              claire.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:angenguessan08@gmail.com">
+                <div>
+                  <span>Email</span>
+                  <strong>angenguessan08@gmail.com</strong>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/analestnguessan" target="_blank" rel="noreferrer noopener">
+                <div>
+                  <span>LinkedIn</span>
+                  <strong>linkedin.com/in/analestnguessan</strong>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+              <a href="tel:+2250700000000">
+                <div>
+                  <span>Téléphone</span>
+                  <strong>+225 07 08 99 52 05</strong>
+                  <strong>+225 01 52 23 95 57</strong>
+                </div>
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+
+                </svg>
+              </a>
+              <a href="#contact">
+                <div>
+                  <span>Disponibilité</span><strong> 7j/7 • 24h/24</strong>
+
+                  <strong>Missions, Emploi, Freelance</strong>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <div class="contact-card contact-form reveal">
+            <div class="field">
+              <label for="name">Nom</label>
+              <input id="name" name="Nom" type="text" autocomplete="name" placeholder="Votre nom" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="Email" type="email" autocomplete="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="Message" placeholder="Parlez-moi de votre besoin data..."
+                required></textarea>
+            </div>
+            <a class="btn btn-primary" href="mailto:angenguessan08@gmail.com">Me contacter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Ange Alida N'GUESSAN — Data Analyst</p>
+      <p>Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Année dynamique ──
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // ── Navbar scroll ──
+    const nav = document.getElementById("nav");
+
+    function setScrolledState() {
+      nav.classList.toggle("is-scrolled", window.scrollY > 12);
+    }
+    setScrolledState();
+    window.addEventListener("scroll", setScrolledState, { passive: true });
+
+    // ── Menu mobile ──
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const links = Array.from(document.querySelectorAll(".nav-link"));
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      menuBtn.classList.toggle("is-open", isOpen);
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        menuBtn.classList.remove("is-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // ── Reveal au scroll ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 35, 260)}ms`;
+      revealObserver.observe(el);
+    });
+
+    // ── Lien actif selon section visible ──
+    const sections = Array.from(document.querySelectorAll("main section, header.hero"));
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => {
+          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+        });
+      });
+    }, { rootMargin: "-38% 0px -56% 0px" });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    // ── Compteurs animés ──
+    const counters = Array.from(document.querySelectorAll("[data-count]"));
+
+    function animateCounter(counter) {
+      const target = Number(counter.dataset.count || 0);
+      const duration = 1300;
+      const start = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = Math.round(target * eased);
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.8 });
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  </script>
+
+</body>
+
+</html>
